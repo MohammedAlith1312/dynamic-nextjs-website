@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import Home from '../Pages/Home';
 
 export const dynamic = 'force-dynamic';
-export const dynamicParams = true;
+export const fetchCache = "force-no-store";
 
 // Valid locales list
 const VALID_LOCALES = ['ar', 'en'];
