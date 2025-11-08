@@ -17,7 +17,8 @@ const nextConfig:NextConfig = {
   // env: {
   //   NEXT_PUBLIC_BASE_PATH: "/Site",
   // },
-  reactStrictMode:true
+  reactStrictMode:true,
+  output:"standalone"
 };
 
 

@@ -8,6 +8,7 @@ import BaseFooter from "./components/BaseFooter";
 import FooterBottom from "./components/Footer";
 import WhatsappIcon from "./assests/images/whatsapp.png"
 
+export const dynamic = "force-dynamic";
 
 export default function RootPage() {
   return (
