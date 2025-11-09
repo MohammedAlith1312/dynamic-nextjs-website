@@ -10,11 +10,17 @@ const Ar_API_URL ="https://portal.mawarid.com.sa/SystemApi/api/v1/entitytype/dyn
 
 
 export async function getMessages(locale: 'ar' | 'en') {
-   
   const API_URL = locale === "ar" ? Ar_API_URL : En_API_URL;
+
+  // Timeout in ms
+  const TIMEOUT = 20000; // 20 seconds
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), TIMEOUT);
+
   try {
-  
-     if (!API_URL) throw new Error("API_URL is not defined in environment variables");
+    if (!API_URL) throw new Error("API_URL is not defined");
+
     const res = await fetch(`${API_URL}&locale=${locale}`, {
       headers: {
         'Content-Type': 'application/json',
@@ -26,22 +32,26 @@ export async function getMessages(locale: 'ar' | 'en') {
         'Companycode': 'Mawarid',
       },
       cache: 'no-store',
-      
-      // next: { revalidate: 60 } // ISR: revalidate after 60s
+      signal: controller.signal,  // <-- attach signal here
     });
 
-   
+    clearTimeout(timeoutId); // Clear timeout on success
+
     if (!res.ok) {
       console.error(`Failed to fetch messages for locale: ${locale}, status: ${res.status}`);
       return {};
     }
 
     const data = await res.json();
-    // console.log('API response:', data);
     return data || {};
-  } catch (error) {
-    
-    console.error(`Error fetching messages for locale ${locale}:`, error);
+  } catch (error: any) {
+    clearTimeout(timeoutId); // Clear timeout if error occurs too
+
+    if (error.name === 'AbortError') {
+      console.error(`Request timed out fetching messages for locale ${locale}`);
+    } else {
+      console.error(`Error fetching messages for locale ${locale}:`, error);
+    }
     return {};
   }
 }
