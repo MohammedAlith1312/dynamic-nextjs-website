@@ -18,7 +18,8 @@ const nextConfig:NextConfig = {
   //   NEXT_PUBLIC_BASE_PATH: "/Site",
   // },
   reactStrictMode:true,
-  output:"standalone"
+  output:"standalone",
+
 };
 
 
