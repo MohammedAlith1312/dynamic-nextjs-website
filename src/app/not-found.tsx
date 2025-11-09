@@ -1,6 +1,6 @@
 // app/not-found.tsx
 import React from "react";
-
+export const dynamic = 'force-dynamic';
 interface NotFoundProps {
   is404?: boolean;
 }
