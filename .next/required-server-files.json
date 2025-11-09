@@ -89,6 +89,7 @@
     "compiler": {},
     "expireTime": 31536000,
     "staticPageGenerationTimeout": 60,
+    "output": "standalone",
     "modularizeImports": {
       "@mui/icons-material": {
         "transform": "@mui/icons-material/{{member}}"
@@ -197,7 +198,7 @@
       "staticGenerationMinPagesPerWorker": 25,
       "cacheComponents": false,
       "inlineCss": false,
-      "useCache": true,
+      "useCache": false,
       "globalNotFound": false,
       "devtoolSegmentExplorer": true,
       "browserDebugInfoInTerminal": false,
