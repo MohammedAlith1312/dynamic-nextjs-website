@@ -10,7 +10,7 @@ const Ar_API_URL ="https://portal.mawarid.com.sa/SystemApi/api/v1/entitytype/dyn
 
 
 export async function getMessages(locale: 'ar' | 'en') {
-   'use cache'
+   
   const API_URL = locale === "ar" ? Ar_API_URL : En_API_URL;
   try {
   
