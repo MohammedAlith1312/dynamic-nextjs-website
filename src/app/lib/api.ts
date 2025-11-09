@@ -1,7 +1,7 @@
 import { fetchFromPortal } from "./proxy";
 
 export async function getMessages(locale: "ar" | "en") {
-  const categoryId = locale === "ar" ? "CDN0000018" : "CDN0000012";
+  const categoryId = locale === "ar" ? "CDN0000018&getfromjson=true" : "CDN0000012&getfromjson=true";
 
   const data = await fetchFromPortal(categoryId, locale);
 
