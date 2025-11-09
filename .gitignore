@@ -17,12 +17,6 @@
 /.next/
 /out/
 
-
-!.next/standalone
-!.next/standalone/**
-
-!.next/static
-!.next/static/**
 # production
 /build
 
