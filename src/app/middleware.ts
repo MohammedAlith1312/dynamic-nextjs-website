@@ -12,7 +12,7 @@ export default function middleware(req:any) {
     url.pathname = '/ar';
     return NextResponse.redirect(url);
   }
-console.log("🧭 Middleware hit:", req.nextUrl.pathname);
+console.log("Middleware hit:", req.nextUrl.pathname);
 return intlMiddleware(req);
 }
 
