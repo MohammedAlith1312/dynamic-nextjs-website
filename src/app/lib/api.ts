@@ -31,7 +31,7 @@ export async function getMessages(locale: 'ar' | 'en') {
         'Clientuserid': 'Public',
         'Companycode': 'Mawarid',
       },
-      cache: 'no-store',
+      cache: 'force-cache',
       signal: controller.signal,  // <-- attach signal here
     });
 
