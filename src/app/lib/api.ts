@@ -1,17 +1,5 @@
 export async function getMessages(locale: 'ar' | 'en') {
-   const isServer = typeof window === 'undefined';
-  let PROXY_URL = `/api/proxy?locale=${locale}`;
-
-  if (isServer) {
-    // When running on server, use absolute URL fallback to localhost
-    const baseUrl = process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : 'http://localhost:3000'; // fallback for local dev
-
-    PROXY_URL = `${baseUrl}/api/proxy?locale=${locale}`;
-  }
-
-
+  const PROXY_URL = `/api/proxy?locale=${locale}`; // always relative URL
 
   try {
     const res = await fetch(PROXY_URL, {
