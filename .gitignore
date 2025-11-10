@@ -14,11 +14,23 @@
 /coverage
 
 # next.js
-/.next/
-/out/
+# next.js
+# Ignore .next folder
+# Ignore everything in .next
+/.next/*
 
-# production
+# But un-ignore the standalone folder itself (so we can access subfolders)
+!/.next/standalone/
+
+# Ignore everything inside standalone
+/.next/standalone/*
+
+# But keep the server folder and everything in it
+!/.next/standalone/server.js
+
+# Production folders
 /build
+/out
 
 # misc
 .DS_Store
