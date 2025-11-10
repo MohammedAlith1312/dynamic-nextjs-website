@@ -13,7 +13,7 @@ export async function getMessages(locale: 'ar' | 'en') {
   const API_URL = locale === "ar" ? Ar_API_URL : En_API_URL;
 
   // Timeout in ms
-  const TIMEOUT = 60000; 
+  const TIMEOUT = 20000; 
 
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), TIMEOUT);
