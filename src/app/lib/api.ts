@@ -1,5 +1,5 @@
 // import 'server-only';
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';   curl -w "\nTime: %{time_total}s\n" "https://portal.mawarid.com.sa/..."
 
 const En_API_URL = "https://portal.mawarid.com.sa/SystemApi/api/v1/entitytype/dynamic/getbycategoryid?CategoryId=CDN0000012&getfromjson=true"
 
