@@ -1,24 +1,30 @@
+export async function getMessages(locale: 'ar' | 'en') {
+let PROXY_URL = `/api/proxy?locale=${locale}`;
 
-"use server";
+  // Check if code is running on server
+  if (typeof window === 'undefined') {
+    // On server, provide absolute URL
+    const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
+    PROXY_URL = `${baseUrl}/api/proxy?locale=${locale}`;
+  }
 
-export async function getMessages(locale: "en" | "ar") {
-  const API_URL = locale === "ar"
-    ? "https://portal.mawarid.com.sa/SystemApi/api/v1/entitytype/dynamic/getbycategoryid?CategoryId=CDN0000018&getfromjson=true"
-    : "https://portal.mawarid.com.sa/SystemApi/api/v1/entitytype/dynamic/getbycategoryid?CategoryId=CDN0000012&getfromjson=true";
+  try {
+    const res = await fetch(PROXY_URL, {
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-  const res = await fetch(API_URL, {
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer Public",
-      "Appcode": "SOL0000008",
-      "Area": "System",
-      "Clientsecretid": "536d1e85f7a04cd385c27d98ff949cda",
-      "Clientuserid": "Public",
-      "Companycode": "Mawarid",
-    },
-    cache: "no-store",
-  });
+    if (!res.ok) {
+      console.error(`Proxy API error for locale ${locale}: ${res.status}`);
+      return {};
+    }
 
-  if (!res.ok) throw new Error("Failed to fetch Mawarid API");
-  return res.json();
+    const data = await res.json();
+    return data || {};
+  } catch (error) {
+    console.error(`Failed to fetch messages from proxy for locale ${locale}`, error);
+    return {};
+  }
 }
