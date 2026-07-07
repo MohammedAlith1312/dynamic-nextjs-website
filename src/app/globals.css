@@ -590,8 +590,8 @@ button {
 
 .chat {
   position: fixed;
-      bottom: 5px;
-    inset-inline-end: 2rem;
+  bottom: 5px;
+  inset-inline-end: 2rem;
   z-index: 1025;
   border-radius: 50%;
   background-color: #25d366;
