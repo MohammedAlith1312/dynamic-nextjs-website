@@ -462,7 +462,7 @@ button {
   margin-top: 90PX;
 }
 
-@media (max-width:768px) {
+@media (max-width:700px) {
   .serviceboxes{
     flex-wrap: wrap;
   }
